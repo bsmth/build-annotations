@@ -1,8 +1,8 @@
 {
   "dependencies": {
-    "markdownlint-cli": "^0.43.0"
+    "markdownlint-cli2": "^0.16.0"
   },
   "scripts": {
-    "test": "markdownlint ./test/**/*.md"
+    "test": "markdownlint-cli2 ./test/**/*.md"
   }
 }
