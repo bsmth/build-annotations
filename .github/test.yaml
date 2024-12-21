@@ -1,0 +1,14 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: xt0rted/markdownlint-problem-matcher@61b8f7f8af0ceb54e2421ef26cd2bdd1332c6911
+      - run: markdownlint **/*.md
