@@ -1,3 +1,5 @@
+name: Test
+
 on:
   pull_request:
     branches:
@@ -7,8 +9,18 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - uses: xt0rted/markdownlint-problem-matcher@v3
-      - run: markdownlint **/*.md
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: npm
+      - name: Install Deps
+        run: npm ci
+      - name: Markdownlint problem matcher
+        uses: xt0rted/markdownlint-problem-matcher@v3
+      - name: Lint Markdown
+        run: npm test
